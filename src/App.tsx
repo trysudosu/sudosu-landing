@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Zap, Shield, Cpu, Download, Star, ArrowRight, Users, PlayCircle, MessageSquare, Sparkles } from 'lucide-react';
+import { Terminal, Zap, Shield, Cpu, Download, Star, ArrowRight, Users, PlayCircle, MessageSquare, Sparkles, Code, Database, Cloud } from 'lucide-react';
+import { SudosuLogo } from './components/SudosuLogo';
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
@@ -8,34 +9,60 @@ function App() {
   useEffect(() => {
     setIsVisible(true);
     
-    // Animate terminal demo
+    // Animate terminal demo with smoother transitions
     const interval = setInterval(() => {
-      setTerminalStep(prev => (prev + 1) % 4);
-    }, 3000);
+      setTerminalStep(prev => (prev + 1) % 5);
+    }, 4000);
     
     return () => clearInterval(interval);
   }, []);
 
-  const terminalSteps = [
+  const terminalExamples = [
     {
-      command: "sudosu deploy my react app to vercel",
-      aiResponse: "I'll help you deploy your React app to Vercel. Let me analyze your project structure and create an optimized deployment plan.",
-      executing: false
+      command: "sudosu setup a new microservice with docker and postgres",
+      aiResponse: "I'll help you create a complete microservice setup with Docker containerization and PostgreSQL database. Let me analyze your requirements...",
+      executing: false,
+      terminalOutput: []
     },
     {
-      command: "sudosu deploy my react app to vercel",
-      aiResponse: "✓ Project analyzed\n✓ Build configuration optimized\n✓ Deployment plan ready\n\nExecuting deployment...",
-      executing: true
+      command: "sudosu setup a new microservice with docker and postgres",
+      aiResponse: "✓ Project structure analyzed\n✓ Docker configuration ready\n✓ PostgreSQL setup prepared\n✓ Environment variables configured\n\nExecuting setup...",
+      executing: true,
+      terminalOutput: [
+        "🔍 Creating project structure...",
+        "📦 Generating Dockerfile...",
+        "🐘 Setting up PostgreSQL container...",
+        "⚙️ Configuring environment..."
+      ]
     },
     {
-      command: "sudosu deploy my react app to vercel",
-      aiResponse: "✅ Deployment successful!\n\nYour app is live at:\nhttps://my-app-xyz.vercel.app\n\nBuild time: 45s\nBundle size: 2.1MB",
-      executing: false
+      command: "sudosu setup a new microservice with docker and postgres",
+      aiResponse: "✅ Microservice setup complete!\n\n📁 Project structure created\n🐳 Docker containers running\n🗄️ PostgreSQL database ready\n🔗 API endpoints configured\n\nYour service is running on http://localhost:3000",
+      executing: false,
+      terminalOutput: [
+        "✅ Dockerfile created successfully",
+        "✅ docker-compose.yml configured",
+        "✅ PostgreSQL container started",
+        "✅ Database migrations applied",
+        "✅ API server running on port 3000"
+      ]
     },
     {
-      command: "",
-      aiResponse: "Ready for your next command! What would you like me to help you with?",
-      executing: false
+      command: "sudosu optimize my python ml pipeline for production",
+      aiResponse: "I'll analyze your ML pipeline and optimize it for production deployment. Let me check your current setup and suggest improvements...",
+      executing: false,
+      terminalOutput: []
+    },
+    {
+      command: "sudosu optimize my python ml pipeline for production",
+      aiResponse: "✓ Pipeline analyzed\n✓ Performance bottlenecks identified\n✓ Optimization strategies ready\n✓ Production config generated\n\nApplying optimizations...",
+      executing: true,
+      terminalOutput: [
+        "🔍 Analyzing model performance...",
+        "⚡ Optimizing data preprocessing...",
+        "🚀 Setting up model caching...",
+        "📊 Configuring monitoring..."
+      ]
     }
   ];
 
@@ -49,12 +76,7 @@ function App() {
       <nav className="relative z-50 p-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-lg flex items-center justify-center">
-              <Terminal className="w-6 h-6 text-black" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-              SUDOSU
-            </span>
+            <SudosuLogo className="h-8" />
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <a href="#features" className="hover:text-emerald-400 transition-colors">Features</a>
@@ -136,42 +158,45 @@ function App() {
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2">
                         <span className="text-emerald-400">➜</span>
-                        <span className="text-cyan-400">~/my-react-app</span>
+                        <span className="text-cyan-400">~/projects</span>
                         <span className="text-gray-300">git:(main)</span>
                       </div>
                       
                       {terminalStep >= 0 && (
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-2 transition-all duration-500 ease-in-out">
                           <span className="text-emerald-400">$</span>
-                          <span className="text-white">{terminalSteps[terminalStep].command}</span>
+                          <span className="text-white">{terminalExamples[terminalStep].command}</span>
                           {terminalStep === 0 && <span className="animate-pulse">|</span>}
                         </div>
                       )}
 
-                      {terminalStep >= 1 && (
-                        <div className="text-emerald-300 ml-4 space-y-1">
-                          <div>🔍 Analyzing project structure...</div>
-                          <div>📦 Detecting dependencies...</div>
-                          <div>⚙️ Configuring build settings...</div>
+                      {terminalStep >= 1 && terminalExamples[terminalStep].terminalOutput.length > 0 && (
+                        <div className="text-emerald-300 ml-4 space-y-1 transition-all duration-700 ease-in-out">
+                          {terminalExamples[terminalStep].terminalOutput.map((line, index) => (
+                            <div 
+                              key={index} 
+                              className="opacity-0 animate-[fadeInUp_0.5s_ease-out_forwards]"
+                              style={{ animationDelay: `${index * 0.3}s` }}
+                            >
+                              {line}
+                            </div>
+                          ))}
                         </div>
                       )}
 
-                      {terminalStep >= 2 && (
-                        <div className="text-cyan-300 ml-4 space-y-1">
-                          <div>🚀 Building application...</div>
-                          <div>📤 Uploading to Vercel...</div>
-                          <div>🌐 Configuring domain...</div>
-                          {terminalSteps[terminalStep].executing && (
+                      {terminalExamples[terminalStep].executing && (
+                        <div className="text-cyan-300 ml-4 space-y-1 transition-all duration-500 ease-in-out">
+                          {terminalExamples[terminalStep].executing && (
                             <div className="flex items-center space-x-2">
                               <div className="animate-spin w-4 h-4 border-2 border-emerald-400 border-t-transparent rounded-full"></div>
-                              <span>Deploying...</span>
+                              <span>Processing...</span>
                             </div>
                           )}
                         </div>
                       )}
 
-                      {terminalStep === 3 && (
-                        <div className="flex items-center space-x-2">
+                      {(terminalStep === 3 || terminalStep === 0) && !terminalExamples[terminalStep].executing && (
+                        <div className="flex items-center space-x-2 transition-all duration-500 ease-in-out">
                           <span className="text-emerald-400">$</span>
                           <span className="animate-pulse">|</span>
                         </div>
@@ -184,28 +209,28 @@ function App() {
                     <div className="p-4 border-b border-gray-700/50">
                       <div className="flex items-center space-x-2">
                         <MessageSquare className="w-5 h-5 text-emerald-400" />
-                        <span className="font-semibold">AI Assistant</span>
+                        <span className="font-semibold">Sudosu AI</span>
                       </div>
                     </div>
                     
                     <div className="p-4 h-full overflow-y-auto">
                       <div className="space-y-4">
-                        <div className="flex items-start space-x-3">
+                        <div className="flex items-start space-x-3 transition-all duration-700 ease-in-out">
                           <div className="w-8 h-8 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center flex-shrink-0">
                             <span className="text-black text-sm">😊</span>
                           </div>
                           <div className="bg-gray-800/60 rounded-lg p-3 text-sm leading-relaxed">
-                            {terminalSteps[terminalStep].aiResponse}
+                            {terminalExamples[terminalStep].aiResponse}
                           </div>
                         </div>
                         
-                        {terminalStep === 2 && (
-                          <div className="flex items-start space-x-3">
+                        {(terminalStep === 2 || terminalStep === 4) && (
+                          <div className="flex items-start space-x-3 transition-all duration-500 ease-in-out opacity-0 animate-[fadeInUp_0.5s_ease-out_0.5s_forwards]">
                             <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0">
                               <span className="text-white text-xs">You</span>
                             </div>
                             <div className="bg-emerald-900/30 border border-emerald-700/50 rounded-lg p-3 text-sm">
-                              Can you also set up automatic deployments?
+                              {terminalStep === 2 ? "Can you also add API documentation?" : "How can I monitor the model performance?"}
                             </div>
                           </div>
                         )}
@@ -237,13 +262,13 @@ function App() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: <Zap className="w-8 h-8" />,
+                icon: <MessageSquare className="w-8 h-8" />,
                 title: "Natural Language Commands",
                 description: "Describe what you want to accomplish in plain English. SUDOSU translates your intent into precise terminal commands."
               },
               {
-                icon: <MessageSquare className="w-8 h-8" />,
-                title: "AI Chat Assistant",
+                icon: <Sparkles className="w-8 h-8" />,
+                title: "Sudosu AI Assistant",
                 description: "Get real-time guidance, explanations, and suggestions through an integrated chat interface that understands your workflow."
               },
               {
@@ -252,17 +277,17 @@ function App() {
                 description: "Built-in safety checks and confirmation prompts ensure your system remains secure during automated command execution."
               },
               {
-                icon: <Cpu className="w-8 h-8" />,
+                icon: <Code className="w-8 h-8" />,
                 title: "Context Awareness",
                 description: "Understands your project structure, git status, dependencies, and environment to make intelligent decisions."
               },
               {
-                icon: <Sparkles className="w-8 h-8" />,
+                icon: <Zap className="w-8 h-8" />,
                 title: "Smart Automation",
-                description: "Automate complex multi-step workflows with a single command. From deployment to testing, SUDOSU handles it all."
+                description: "Automate complex multi-step workflows with a single command. From Docker setup to ML pipelines, SUDOSU handles it all."
               },
               {
-                icon: <Terminal className="w-8 h-8" />,
+                icon: <Cpu className="w-8 h-8" />,
                 title: "Native Mac Experience",
                 description: "Designed specifically for macOS with native performance, beautiful UI, and seamless system integration."
               }
@@ -302,19 +327,19 @@ function App() {
                 step: "01", 
                 title: "Describe Your Goal", 
                 content: "Simply tell SUDOSU what you want to accomplish in natural language. No need to remember complex command syntax.",
-                example: '"Deploy my app to production"'
+                example: '"Set up a new microservice with Docker"'
               },
               { 
                 step: "02", 
                 title: "Review the Plan", 
                 content: "AI generates a step-by-step execution plan tailored to your project. Review and approve before execution.",
-                example: "Build → Test → Deploy → Configure"
+                example: "Create → Configure → Build → Deploy"
               },
               { 
                 step: "03", 
                 title: "Execute & Monitor", 
                 content: "Watch as SUDOSU safely executes each step with real-time feedback and smart error handling.",
-                example: "✅ Deployed successfully!"
+                example: "✅ Service running successfully!"
               }
             ].map((item, index) => (
               <div key={index} className="text-center">
@@ -425,12 +450,7 @@ function App() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-lg flex items-center justify-center">
-                <Terminal className="w-5 h-5 text-black" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                SUDOSU
-              </span>
+              <SudosuLogo className="h-6" />
             </div>
             <div className="flex space-x-6 text-gray-400">
               <a href="#" className="hover:text-emerald-400 transition-colors">Privacy</a>
