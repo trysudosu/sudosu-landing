@@ -126,14 +126,14 @@ function App() {
               </div>
               
               <div className="flex items-center justify-center space-x-6 text-gray-400">
-                <div className="flex items-center space-x-2">
+                {/* <div className="flex items-center space-x-2">
                   <Star className="w-5 h-5 text-yellow-400 fill-current" />
                   <span>4.9/5 on App Store</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Users className="w-5 h-5" />
                   <span>10k+ developers</span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
