@@ -83,7 +83,8 @@ function App() {
             <a href="#features" className="hover:text-emerald-400 transition-colors">Features</a>
             <a href="#how-it-works" className="hover:text-emerald-400 transition-colors">How it Works</a>
             {/* <a href="#pricing" className="hover:text-emerald-400 transition-colors">Pricing</a> */}
-            <button className="group inline-flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 px-6 py-2 rounded-lg transition-all duration-200 transform hover:scale-105 text-black font-semibold">
+            <button className="group inline-flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 px-6 py-2 rounded-lg transition-all duration-200 transform hover:scale-105 text-black font-semibold"
+                    onClick={() => window.open('https://tally.so/r/npY4GP', '_blank')}>
               <span>Request Early Access</span>
               <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
             </button>
@@ -98,9 +99,9 @@ function App() {
           <div className="text-center">
             <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                The AI-Powered
+                The Ultimate AI Co-Pilot
                 <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent block">
-                  Terminal for Mac
+                  for your Terminal
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -111,7 +112,8 @@ function App() {
             
             <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                <button className="group bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 flex items-center space-x-2 text-black">
+                <button className="group bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 flex items-center space-x-2 text-black"
+                        onClick={() => window.open('https://tally.so/r/npY4GP', '_blank')}>
                   {/* <Download className="w-5 h-5" /> */}
                   <span>Request Early Access</span>
                   {/* <span>Download for Mac</span> */}
@@ -434,10 +436,11 @@ function App() {
                 Join thousands of developers who have already revolutionized their command line workflow with SUDOSU.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 text-black">
+                {/* <button className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 text-black">
                   Download for Mac
-                </button>
-                <button className="px-8 py-4 rounded-xl text-lg font-semibold border border-gray-700 hover:border-emerald-400 transition-all duration-200 transform hover:scale-105 backdrop-blur-sm bg-gray-900/30">
+                </button> */}
+                <button className="px-8 py-4 rounded-xl text-lg font-semibold border border-gray-700 hover:border-emerald-400 transition-all duration-200 transform hover:scale-105 backdrop-blur-sm bg-gray-900/30"
+                        onClick={() => window.open('https://tally.so/r/npY4GP', '_blank')}>
                   Request Early Access
                 </button>
               </div>
