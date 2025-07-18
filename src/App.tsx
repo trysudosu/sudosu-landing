@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal, Zap, Shield, Cpu, Download, Star, ArrowRight, Users, PlayCircle, MessageSquare, Sparkles, Code, Database, Cloud } from 'lucide-react';
 import { SudosuLogo } from './components/SudosuLogo';
+import { FabIcon } from './components/FabIcon';
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
@@ -75,16 +76,18 @@ function App() {
       {/* Navigation */}
       <nav className="relative z-50 p-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <SudosuLogo className="h-8" />
+          <div className="flex items-center space-x-5">
+            <SudosuLogo className="h-12" />
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <a href="#features" className="hover:text-emerald-400 transition-colors">Features</a>
             <a href="#how-it-works" className="hover:text-emerald-400 transition-colors">How it Works</a>
-            <a href="#pricing" className="hover:text-emerald-400 transition-colors">Pricing</a>
-            <button className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 px-6 py-2 rounded-lg transition-all duration-200 transform hover:scale-105 text-black font-semibold">
-              Download
+            {/* <a href="#pricing" className="hover:text-emerald-400 transition-colors">Pricing</a> */}
+            <button className="group inline-flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 px-6 py-2 rounded-lg transition-all duration-200 transform hover:scale-105 text-black font-semibold">
+              <span>Request Early Access</span>
+              <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
             </button>
+            
           </div>
         </div>
       </nav>
@@ -109,14 +112,15 @@ function App() {
             <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                 <button className="group bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 flex items-center space-x-2 text-black">
-                  <Download className="w-5 h-5" />
-                  <span>Download for Mac</span>
+                  {/* <Download className="w-5 h-5" /> */}
+                  <span>Request Early Access</span>
+                  {/* <span>Download for Mac</span> */}
                   <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
                 </button>
-                <button className="px-8 py-4 rounded-xl text-lg font-semibold border border-gray-700 hover:border-emerald-400 transition-all duration-200 transform hover:scale-105 backdrop-blur-sm bg-gray-900/30 flex items-center space-x-2">
+                {/* <button className="px-8 py-4 rounded-xl text-lg font-semibold border border-gray-700 hover:border-emerald-400 transition-all duration-200 transform hover:scale-105 backdrop-blur-sm bg-gray-900/30 flex items-center space-x-2">
                   <PlayCircle className="w-5 h-5" />
                   <span>Watch Demo</span>
-                </button>
+                </button> */}
               </div>
               
               <div className="flex items-center justify-center space-x-6 text-gray-400">
@@ -450,7 +454,7 @@ function App() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <SudosuLogo className="h-6" />
+              <SudosuLogo className="h-10" />
             </div>
             <div className="flex space-x-6 text-gray-400">
               <a href="#" className="hover:text-emerald-400 transition-colors">Privacy</a>
@@ -464,6 +468,11 @@ function App() {
           </div>
         </div>
       </footer>
+      <div className="fixed bottom-8 right-8">
+        <button className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 p-4 rounded-full shadow-lg transform hover:scale-110 transition-all duration-200">
+          <FabIcon className="w-8 h-8" />
+        </button>
+      </div>
     </div>
   );
 }
